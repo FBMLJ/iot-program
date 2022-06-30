@@ -12,7 +12,7 @@ class Sensor(threading.Thread):
         self.taxa_de_modificacao = taxa_de_modificacao
         self.minimo = minimo
         self.maximo = maximo
-        self.valor_atual = 0
+        self.valor_atual = valor_inicial
         self.sleep_time = sleep_time
 
     def _atualiza_broke(self):
