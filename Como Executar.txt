@@ -1,0 +1,11 @@
+Basicamente precisamos primeiro usar o docker-compose
+
+se rodar o comando docker-compose up, vai criar o ambiente docker necessario
+
+primeiro comando: docker-compose up
+
+segundo precisamos rodar o progrma responsavel pelos sensores para isso basta rodar:
+python3 sensor/main.py
+
+terceiro precisamos rodar o progrma responsavel pela interface para isso basta rodar: 
+python3 clientes/main.py
