@@ -1,0 +1,7 @@
+[
+    {"id": "sensor_1", "tipo": "temperatura","x": 40,"y": 40},
+    {"id": "sensor_2", "tipo": "temperatura","x": 70,"y": 20},
+    {"id": "sensor_3", "tipo": "temperatura","x": 80,"y": 90},
+    {"id": "sensor_1", "tipo": "umidade", "x": 200, "y": 200}
+
+]

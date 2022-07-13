@@ -1,37 +1,27 @@
+from re import I
 import threading
 import random
 from time import sleep
 import json
 import requests
 from datetime import date, datetime
+from fiware_interface.atualizar_sensor import atualizar_valor
 
 class Sensor(threading.Thread):
-    def __init__(self, id, taxa_de_modificacao=10, minimo=-100,maximo = 100, valor_inicial = 0 , sleep_time = 3):
+    def __init__(self, id,taxa_de_modificacao=10, minimo=-100,maximo = 100, valor_inicial = 0 , sleep_time = 3):
         super().__init__()
         self.id = id
+        
         self.taxa_de_modificacao = taxa_de_modificacao
         self.minimo = minimo
         self.maximo = maximo
         self.valor_atual = valor_inicial
         self.sleep_time = sleep_time
-
-    def _atualiza_broke(self):
-        headers = {'Content-Type': 'text/plain'}
-
-
-        base_url = "http://localhost:1026/v2/entities/sensor_{}/attrs/".format(self.id)
-        requests.put(base_url+"dado_atual/value", str(self.valor_atual) , headers=headers)
-        
-        resp = requests.get(base_url+"historico/")
-        dados = json.loads(resp.text)
-       
-        
-        dados["value"].append({ "dado": self.valor_atual, "tempo": str(datetime.now())})
-        
-        
-        resp = requests.put(base_url+"historico", json=dados)
-        
-
+        self.criar_sensor()
+    def criar_sensor(self):
+        pass
+    def _atualiza(self):
+        atualizar_valor(self.id,self.valor_atual)
     def _atualiza_valor(self):
         self.valor_atual += 2*(random.random() - 0.5) * self.taxa_de_modificacao
 
@@ -43,7 +33,7 @@ class Sensor(threading.Thread):
             self.valor_atual -= self.valor_atual
 
         # print(self.id,self.valor_atual)
-        self._atualiza_broke()
+        self._atualiza()
 
     def run(self):
         while(True):
@@ -51,9 +41,20 @@ class Sensor(threading.Thread):
             sleep(self.sleep_time * random.random())
 
 if __name__ == "__main__":
-   
+    from fiware_interface.criando_servico import criando_servico
+    criando_servico()
     lista_sensores = []
-    for i in range(15):
-
-        lista_sensores.append(Sensor(i))
+    import json
+    f = open("sensor/dados.json")
+    dados = json.load(f)
+    # print(data)
+    f.close()
+    from fiware_interface.criando_sensor import criando_device
+    for i,dado in enumerate(dados):
+        id = criando_device(dado['tipo'], dado['id'],dado['x'], dado['y'])
+        lista_sensores.append(Sensor(id))
         lista_sensores[i].start()
+    # for i in range(10):
+
+    # lista_sensores.append(Sensor(0,))
+    # lista_sensores[i].start()
