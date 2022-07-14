@@ -15,7 +15,7 @@ class Sensor(threading.Thread):
         self.taxa_de_modificacao = taxa_de_modificacao
         self.minimo = minimo
         self.maximo = maximo
-        self.valor_atual = valor_inicial
+        self.valor_atual = random.random() * (maximo- minimo) + minimo
         self.sleep_time = sleep_time
         self.criar_sensor()
     def criar_sensor(self):
@@ -52,7 +52,7 @@ if __name__ == "__main__":
     from fiware_interface.criando_sensor import criando_device
     for i,dado in enumerate(dados):
         id = criando_device(dado['tipo'], dado['id'],dado['x'], dado['y'])
-        lista_sensores.append(Sensor(id))
+        lista_sensores.append(Sensor(id, maximo=dado['max'], minimo=dado['min']))
         lista_sensores[i].start()
     # for i in range(10):
 

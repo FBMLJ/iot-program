@@ -1,7 +1,7 @@
 [
-    {"id": "sensor_1", "tipo": "temperatura","x": 40,"y": 40},
-    {"id": "sensor_2", "tipo": "temperatura","x": 70,"y": 20},
-    {"id": "sensor_3", "tipo": "temperatura","x": 80,"y": 90},
-    {"id": "sensor_1", "tipo": "umidade", "x": 200, "y": 200}
-
+    {"id": "sensor_1", "tipo": "temperatura","x": 40,"y": 40, "min": 20, "max": 50},
+    {"id": "sensor_2", "tipo": "temperatura","x": 70,"y": 20, "min": 20, "max": 50},
+    {"id": "sensor_3", "tipo": "temperatura","x": 80,"y": 90, "min": 20, "max": 50},
+    {"id": "sensor_1", "tipo": "umidade", "x": 200, "y": 200, "min": 0,  "max": 100},
+    {"id": "sensor_2", "tipo": "umidade", "x": 250, "y": 200, "min": 0,  "max": 100}
 ]
