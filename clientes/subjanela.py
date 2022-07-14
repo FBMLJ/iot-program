@@ -3,9 +3,13 @@ import tkinter as tk
 from tkinter import *
 from tkinter import ttk
 class NovaJanela:
+    def on_close(self):
+        self.pai.sub_janela = None
+        self.newWindow.destroy()
     def __init__(self,janela_principal, lista_de_sensores_atuais):
         self.pai = janela_principal
         self.newWindow = Toplevel(janela_principal )
+        self.newWindow.protocol("WM_DELETE_WINDOW",self.on_close)
         self.newWindow.resizable(True,True)
         self.newWindow.title("Analisando objetos selecionados")
         self.tabela = ttk.Treeview(self.newWindow)
