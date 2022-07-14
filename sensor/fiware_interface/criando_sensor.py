@@ -44,5 +44,5 @@ def criando_device(tipo,id,x,y):
 
     response = requests.request("POST", url, json=payload, headers=headers)
 
-    print(response.text)
+    # print(response.text)
     return device_id

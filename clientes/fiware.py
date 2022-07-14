@@ -13,4 +13,4 @@ def get_all_sensor():
 
     return json.loads(response.text)
     
-print(get_all_sensor())
+# print(get_all_sensor())

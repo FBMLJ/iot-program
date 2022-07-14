@@ -29,7 +29,8 @@ class Sensor:
         }
 
         response = requests.request("GET", url, data=payload, headers=headers)
-        return json.loads(response.text)['valor']['value']
+        self.valor = json.loads(response.text)['valor']['value']
+        return self.valor
        
 
     def update(self):
